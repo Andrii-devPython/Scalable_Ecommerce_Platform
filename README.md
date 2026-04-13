@@ -22,7 +22,9 @@ A scalable e-commerce platform built with Python, showcasing backend architectur
 project.py  
 test_project.py  
 requirements.txt  
-README.md
+README.md  
+.gitignore  
+LICENSE  
 
 ---
 
