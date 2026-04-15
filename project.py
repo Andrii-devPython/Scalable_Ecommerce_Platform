@@ -1,9 +1,17 @@
 def main():
+
     products = []
+    cart = []
     add_product(products, "Laptop", 2000)
     print(products)
 
 def add_product(products, name, price):
+    if not name:
+        return False
+    
+    if price <= 0:
+        return False
+    
     product_id = len(products) + 1
     
     product = {
@@ -15,17 +23,31 @@ def add_product(products, name, price):
     products.append(product)
         
 def remove_product(products, product_id):
+    if product_id < 1:
+        return False
+    
     for product in products:
         if product["id"] == product_id:
             products.remove(product)
             return True
     return False
 
-def add_to_cart(products, cart, product_id):
-    pass
+def add_to_cart(products, cart, product_id, quantity):
+    if quantity <= 0:
+        return False
+    for product in products :
+        if product["id"] == product_id:
+            item = {
+                "product" : product,
+                "quantity" : quantity
+            }
+            cart.append(item)
+            return True
+    return False
+        
 
 def show_cart(cart):
-    pass
+    print(cart)
 
 if __name__ == "__main__":
     main()
