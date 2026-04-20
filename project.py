@@ -1,17 +1,19 @@
 def main():
 
-    items = []
-    my_cart = []
-    add_product(items, "Laptop", 2000)
-    add_product(items, "Phone", 1000)
-    add_product(items, "Computer", 3000)
-    show_products(items)
-    add_to_cart(items, my_cart, 1, 6)
-    add_to_cart(items, my_cart, 2, 4)
-    show_cart(my_cart)
-    remove_product(items, 1)
-    show_products(items)
-    total_value = calculate_total(my_cart)
+    products = []
+    cart = []
+    add_product(products, "Laptop", 2000)
+    add_product(products, "Phone", 1000)
+    add_product(products, "Computer", 3000)
+    show_products(products)
+    add_to_cart(products, cart, 1, 6)
+    add_to_cart(products, cart, 2, 4)
+    show_cart(cart)
+    remove_from_cart(cart, 2)
+    show_cart(cart)
+    remove_product(products, 1)
+    show_products(products)
+    total_value = calculate_total(cart)
     show_total(total_value)
     
     
@@ -58,13 +60,26 @@ def add_to_cart(products, cart, product_id, quantity):
             cart.append(item)
             return True
     return False
+
+def remove_from_cart(cart, product_id):
+    if product_id <  1: 
+        return False
+    
+    for item in cart:
+        if item["product"]["id"] == product_id:
+            cart.remove(item)
+            return True
+    return False
+
         
 
 def show_cart(cart):
-    print(cart)
+    for item in cart:
+        print(f"{item['product']['name']} x{item['quantity']} = {item['quantity']*item['product']['price']}")
     
 def show_products(products):
-    print(products)
+    for product in products:
+        print(f"ID: {product['id']} | {product['name']} | {product['price']}")
     
 def calculate_total(cart):
     total = 0
@@ -74,7 +89,7 @@ def calculate_total(cart):
     return total
 
 def show_total(total):
-    print(f"Total of your cart is : {total}!")
+    print(f"Total: {total}!")
         
 
 if __name__ == "__main__":
