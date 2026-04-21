@@ -54,8 +54,7 @@ def add_to_cart(products, cart, product_id, quantity):
         if product["id"] == product_id:
             item = {
                 "product" : product,
-                "quantity" : quantity,
-                "product_id" : product_id
+                "quantity" : quantity
             }
             cart.append(item)
             return True
