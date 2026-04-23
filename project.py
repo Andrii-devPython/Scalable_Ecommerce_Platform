@@ -1,20 +1,43 @@
 def main():
-
+    
     products = []
     cart = []
     add_product(products, "Laptop", 2000)
     add_product(products, "Phone", 1000)
     add_product(products, "Computer", 3000)
-    show_products(products)
+    
     add_to_cart(products, cart, 1, 6)
     add_to_cart(products, cart, 2, 4)
-    show_cart(cart)
-    remove_from_cart(cart, 2)
-    show_cart(cart)
-    remove_product(products, 1)
-    show_products(products)
-    total_value = calculate_total(cart)
-    show_total(total_value)
+    
+    
+    
+    while True:
+        print("\nMenu:")
+        print("1 - Show products")
+        print("2 - Add to cart")
+        print("3 - Remove from cart")
+        print("4 - Show cart")
+        print("5 - Show total")
+        print("0 - Exit")
+        
+        choice = input("Choose option: ")
+        
+        if choice == "1":
+            show_products(products)
+        elif choice == "2":
+            add_to_cart(products, cart, input("Product"), 1)
+        elif choice == "3":
+            remove_from_cart(cart, input("Product_id"))
+        elif choice == "4":
+            show_cart(cart)
+        elif choice == "5":
+            total_value = calculate_total(cart)
+            show_total(total_value)
+        elif choice == "0":
+            break
+        else:
+            print("Wrong number. Please choose from 0 to 5")
+        
     
     
 
@@ -28,9 +51,9 @@ def add_product(products, name, price):
     product_id = len(products) + 1
     
     product = {
-        "id" : product_id,
-        "name" : name,
-        "price" : price,
+        "id": product_id,
+        "name": name,
+        "price": price,
     }
     
     products.append(product)
@@ -50,18 +73,18 @@ def add_to_cart(products, cart, product_id, quantity):
         return False
     if product_id < 1:
         return False
-    for product in products :
+    for product in products:
         if product["id"] == product_id:
             item = {
-                "product" : product,
-                "quantity" : quantity
+                "product": product,
+                "quantity": quantity
             }
             cart.append(item)
             return True
     return False
 
 def remove_from_cart(cart, product_id):
-    if product_id <  1: 
+    if product_id < 1: 
         return False
     
     for item in cart:
@@ -83,7 +106,7 @@ def show_products(products):
 def calculate_total(cart):
     total = 0
     for item in cart:
-        total += item["product"] ["price"] * item["quantity"]
+        total += item["product"]["price"] * item["quantity"]
         
     return total
 
