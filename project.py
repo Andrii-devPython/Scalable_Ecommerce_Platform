@@ -25,9 +25,12 @@ def main():
         if choice == "1":
             show_products(products)
         elif choice == "2":
-            add_to_cart(products, cart, input("Product"), 1)
+            product_id = int(input("Enter product id:"))
+            quantity = int(input("Enter quntity:"))
+            add_to_cart(products, cart, product_id, quantity)
         elif choice == "3":
-            remove_from_cart(cart, input("Product_id"))
+            product_id = int(input("Enter product id:"))
+            remove_from_cart(cart, product_id)
         elif choice == "4":
             show_cart(cart)
         elif choice == "5":
@@ -37,7 +40,7 @@ def main():
             break
         else:
             print("Wrong number. Please choose from 0 to 5")
-        
+       
     
     
 
